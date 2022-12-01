@@ -1,0 +1,128 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+      "title": "RentalAPI Documentation",
+      "description": "This is the documentation for the RentalAPI",
+      "version": "1.0.0",
+      "contact": {
+         "name": "Andre Rodrigues Lima"
+      }
+   },
+   "paths": {
+      "/categories": {
+         "get": {
+            "summary": "List all categories",
+            "description": "List all categories",
+            "tags": [
+               "Category"
+            ],
+            "responses": {
+               "200": {
+                  "description": "List all categories",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "array",
+                           "items": {
+                              "$ref": "#/components/schemas/Category"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "post": {
+            "summary": "Create a new category",
+            "description": "Create a new category",
+            "tags": [
+               "Category"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "description": {
+                              "type": "string"
+                           }
+                        },
+                        "example": {
+                           "name": "Category 1",
+                           "description": "Category 1 description"
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "201": {
+                  "description": "Create a new category",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/specifications": {
+         "get": {
+            "summary": "List all specifications",
+            "description": "List all specifications",
+            "tags": [
+               "specifications"
+            ],
+            "responses": {
+               "200": {
+                  "description": "List all specifications",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "array",
+                           "items": {
+                              "$ref": "#/components/schemas/Specification"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "post": {
+            "summary": "Create a new specification",
+            "description": "Create a new specification",
+            "tags": [
+               "specifications"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/Specification"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "201": {
+                  "description": "Create a new specification",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/Specification"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
