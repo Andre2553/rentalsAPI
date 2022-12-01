@@ -1,7 +1,7 @@
 {
    "openapi": "3.0.0",
    "info": {
-      "title": "RentalAPI Documentation",
+      "title": "RentalsAPI Documentation",
       "description": "This is the documentation for the RentalAPI",
       "version": "1.0.0",
       "contact": {
@@ -24,7 +24,21 @@
                         "schema": {
                            "type": "array",
                            "items": {
-                              "$ref": "#/components/schemas/Category"
+                              "type": "object",
+                              "properties": {
+                                 "id": {
+                                    "type": "string"
+                                 },
+                                 "name": {
+                                    "type": "string"
+                                 },
+                                 "description": {
+                                    "type": "string"
+                                 },
+                                 "created_at": {
+                                    "type": "string"
+                                 }
+                              }
                            }
                         }
                      }
@@ -68,6 +82,16 @@
                         }
                      }
                   }
+               },
+               "500": {
+                  "description": "Category already exists",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object"
+                        }
+                     }
+                  }
                }
             }
          }
@@ -77,7 +101,7 @@
             "summary": "List all specifications",
             "description": "List all specifications",
             "tags": [
-               "specifications"
+               "Specifications"
             ],
             "responses": {
                "200": {
@@ -87,7 +111,21 @@
                         "schema": {
                            "type": "array",
                            "items": {
-                              "$ref": "#/components/schemas/Specification"
+                              "type": "object",
+                              "properties": {
+                                 "id": {
+                                    "type": "string"
+                                 },
+                                 "name": {
+                                    "type": "string"
+                                 },
+                                 "description": {
+                                    "type": "string"
+                                 },
+                                 "created_at": {
+                                    "type": "string"
+                                 }
+                              }
                            }
                         }
                      }
@@ -99,13 +137,24 @@
             "summary": "Create a new specification",
             "description": "Create a new specification",
             "tags": [
-               "specifications"
+               "Specifications"
             ],
             "requestBody": {
                "content": {
                   "application/json": {
                      "schema": {
-                        "$ref": "#/components/schemas/Specification"
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "description": {
+                              "type": "string"
+                           }
+                        },
+                        "example": {
+                           "name": "Specifications 1",
+                           "description": "Specifications 1 description"
+                        }
                      }
                   }
                }
@@ -116,7 +165,7 @@
                   "content": {
                      "application/json": {
                         "schema": {
-                           "$ref": "#/components/schemas/Specification"
+                           "type": "object"
                         }
                      }
                   }
