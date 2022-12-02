@@ -1,5 +1,5 @@
-import { Category } from "../model/Category";
-import { ICategoriesRepository } from "./ICategoriesRepository";
+import { Category } from "../../model/Category";
+import { ICategoriesRepository } from "../ICategoriesRepository";
 
 class PostgresCategoriesRepository implements ICategoriesRepository{
    findByName(name: string): Category {
