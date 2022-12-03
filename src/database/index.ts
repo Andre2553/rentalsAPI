@@ -8,14 +8,15 @@ const AppDataSource = new DataSource({
    username: "docker",
    password: "docker",
    database: "rentals-api",
-   port: 5432,
-   logging: false,
    synchronize: false,
+   logging: false,
+   port: 5432,
    migrations: ["./src/database/migrations/*.ts"],
-   subscribers: ['./src/database/subscriber/*.ts'],
+   entities: ["./src/modules/**/entities/*.ts"],
+
 })
 
-export function createConnection(host = "database"): Promise<DataSource> {
+export function createConnection(host = "db"): Promise<DataSource> {
    return AppDataSource.setOptions({ host }).initialize();
  }
 
