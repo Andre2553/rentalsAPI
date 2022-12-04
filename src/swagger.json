@@ -96,6 +96,37 @@
             }
          }
       },
+      "/categories/import": {
+         "post": {
+            "summary": "Import categories",
+            "description": "Import categories",
+            "tags": [
+               "Category"
+            ],
+            "requestBody": {
+               "content": {
+                  "multipart/form-data": {
+                     "file": {
+                        "type": "string",
+                        "format": "binary"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "201": {
+                  "description": "Import categories",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
       "/specifications": {
          "get": {
             "summary": "List all specifications",
@@ -143,14 +174,7 @@
                "content": {
                   "application/json": {
                      "schema": {
-                        "properties": {
-                           "name": {
-                              "type": "string"
-                           },
-                           "description": {
-                              "type": "string"
-                           }
-                        },
+                        "schema": "#/definitions/Specifications",
                         "example": {
                            "name": "Specifications 1",
                            "description": "Specifications 1 description"
@@ -169,7 +193,30 @@
                         }
                      }
                   }
+               },
+               "500": {
+                  "description": "Specification already exists",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object"
+                        }
+                     }
+                  }
                }
+            }
+         }
+      }
+   },
+   "definitions": {
+      "Specifications": {
+         "type": "object",
+         "properties": {
+            "name": {
+               "type": "string"
+            },
+            "description": {
+               "type": "string"
             }
          }
       }
