@@ -19,8 +19,9 @@ class UserRepository implements IUsersRepository {
 
       await this.repository.save(user);
    }
-   findByEmail(email: string): Promise<any> {
-      throw new Error('Method not implemented.');
+   async findByEmail(email: string): Promise<any> {
+      const user = await this.repository.findOneBy({email});
+      return user;
    }
    findById(id: string): Promise<any> {
       throw new Error('Method not implemented.');
