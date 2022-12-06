@@ -1,13 +1,13 @@
 import { CarsRepositoryInMemory } from "../../repositories/in-memory/CarsRepositoryInMemory";
-import { ListCarsUseCase } from "./ListCarsUseCase";
+import { ListAvailableCarsUseCase } from "./ListAvailableCarsUseCase";
 
-let listCarsUseCase: ListCarsUseCase;
+let listAvailableCarsUseCase: ListAvailableCarsUseCase;
 let carsRepositoryInMemory: CarsRepositoryInMemory;
 
 describe("List Cars", () => {
    beforeEach(() => {
       carsRepositoryInMemory = new CarsRepositoryInMemory();
-      listCarsUseCase = new ListCarsUseCase(carsRepositoryInMemory);
+      listAvailableCarsUseCase = new ListAvailableCarsUseCase(carsRepositoryInMemory);
    });
    it("should be able to list all available cars", async () => {
       const car = await carsRepositoryInMemory.create({
@@ -20,7 +20,7 @@ describe("List Cars", () => {
          category_id: "46292384-4240-4888-a82c-de23fab903b3",
       });
 
-      const cars = await listCarsUseCase.execute({});
+      const cars = await listAvailableCarsUseCase.execute({});
       expect(cars).toEqual([car]);
    });
    it("should be able to list all available cars by Brand filter", async () => {
@@ -43,7 +43,7 @@ describe("List Cars", () => {
          category_id: "46292384-4240-4888-a82c-de23fab903b3",
       });
 
-      const cars = await listCarsUseCase.execute({
+      const cars = await listAvailableCarsUseCase.execute({
          brand: "Brand_test",
       });
       expect(cars).toEqual([car]);
@@ -68,7 +68,7 @@ describe("List Cars", () => {
          category_id: "46292384-4240-4888-a82c-de23fab903b3",
       });
 
-      const cars = await listCarsUseCase.execute({
+      const cars = await listAvailableCarsUseCase.execute({
          name: "Car1",
       });
       expect(cars).toEqual([car]);
@@ -93,7 +93,7 @@ describe("List Cars", () => {
          category_id: "46292384-4240-4888",
       });
 
-      const cars = await listCarsUseCase.execute({
+      const cars = await listAvailableCarsUseCase.execute({
          category_id: "46292384-4240-4888-a82c-de23fab903b3",
       });
       expect(cars).toEqual([car]);

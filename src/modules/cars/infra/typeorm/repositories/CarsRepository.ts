@@ -37,14 +37,19 @@ class CarsRepository implements ICarsRepository{
       category_id?: string,
       name?: string
    ): Promise<Car[]> {
-      const cars = await this.repository.find({
-         where: {
-            brand,
-            category_id,
-            name,
-         },
-      });
-      return cars;
+      const cars = await this.repository
+      .createQueryBuilder("cars")
+      .where("available = :available", {available: true})
+      if(brand){
+         cars.andWhere("brand = :brand", {brand});
+      }
+      if(category_id){
+         cars.andWhere("category_id = :category_id", {category_id});
+      }
+      if(name){
+         cars.andWhere("name = :name", {name});
+      }
+      return cars.getMany();
    }
 
 
