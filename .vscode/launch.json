@@ -7,13 +7,24 @@
       {
          "type": "node",
          "request": "attach",
-         "name": "Launch Program",
+         "name": "Node Program",
          "skipFiles": [
             "<node_internals>/**"
          ],
          "outFiles": [
             "${workspaceFolder}/**/*.js"
          ]
+      },
+      {
+         "name": "Docker: Attach to Node",
+         "type": "node",
+         "request": "attach",
+         "restart": true,
+         "port": 9229,
+         "address": "db",
+         "skipFiles": [
+            "<node_internals>/**"
+         ],
       }
    ]
 }

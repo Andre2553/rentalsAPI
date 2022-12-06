@@ -20,13 +20,13 @@ class CreateCarUseCase {
       @inject("CarsRepository")
       private carsRepository: ICarsRepository) {}
    
-   async execute({name,brand,description,daily_rate,license_plate,fine_amount,category_id}:IRequest ): Promise<Car> {
+   async execute({name,brand,description,daily_rate,license_plate,fine_amount,category_id}:IRequest ): Promise<Car|null> {
 
       const carAlreadyExists = await this.carsRepository.findByLicensePlate(
          license_plate
       );
    
-      if (carAlreadyExists) {
+      if (carAlreadyExists !== null) {
          throw new AppError("Car already exists!");
       }
       const car = await this.carsRepository.create({
@@ -38,7 +38,7 @@ class CreateCarUseCase {
          fine_amount,
          category_id,
       });
-
+      console.log('car created')
       return car;
 
    }
