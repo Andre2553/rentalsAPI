@@ -11,7 +11,7 @@ const AppDataSource = new DataSource({
    synchronize: false,
    logging: false,
    port: 5432,
-   migrations: ["./src/database/migrations/*.ts"],
+   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
    entities: ["./src/modules/**/entities/*.ts"],
 
 })
