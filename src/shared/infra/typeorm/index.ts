@@ -16,7 +16,7 @@ const AppDataSource = new DataSource({
 
 })
 
-export function createConnection(host = "db"): Promise<DataSource> {
+export  function createConnection(host = "db"): Promise<DataSource> {
    return AppDataSource.setOptions({ host }).initialize();
  }
 
