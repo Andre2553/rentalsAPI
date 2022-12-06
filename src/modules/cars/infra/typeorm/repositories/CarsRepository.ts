@@ -25,11 +25,28 @@ class CarsRepository implements ICarsRepository{
       await this.repository.save(car);
       return car;
    }
-   async findByLicensePlate(license_plate: string): Promise<Car | null> {
+   async findByLicensePlate(license_plate: string): Promise<Car | undefined> {
       const car = await this.repository.findOneBy({license_plate});
-      console.log('carFind',car);
+      if(car == null) {
+         return undefined;
+      }
       return car;
    }
+   async findAvailable(
+      brand?: string,
+      category_id?: string,
+      name?: string
+   ): Promise<Car[]> {
+      const cars = await this.repository.find({
+         where: {
+            brand,
+            category_id,
+            name,
+         },
+      });
+      return cars;
+   }
+
 
 }
 

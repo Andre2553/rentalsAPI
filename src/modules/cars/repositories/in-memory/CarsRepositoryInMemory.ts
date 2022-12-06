@@ -19,12 +19,13 @@ class CarsRepositoryInMemory implements ICarsRepository{
       this.cars.push(car);
       return car;
    }
-   async findByLicensePlate(license_plate: string): Promise<Car|null> {
-      return this.cars.find((car) => car.license_plate === license_plate)!;
+   async findByLicensePlate(license_plate: string): Promise<Car|undefined> {
+      return this.cars.find((car) => car.license_plate === license_plate);
+
    }
-   // findAvailable(brand?: string | undefined, category_id?: string | undefined, name?: string | undefined): Promise<Car[]> {
-   //    throw new Error("Method not implemented.");
-   // }
+   async findAvailable(): Promise<Car[]> {
+      return this.cars.filter((car) => car.available === true);
+   }
    // findById(id: string): Promise<Car> {
    //    throw new Error("Method not implemented.");
    // }
