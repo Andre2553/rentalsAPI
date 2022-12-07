@@ -16,8 +16,8 @@ const AppDataSource = new DataSource({
 
 })
 
-export  function createConnection(host = "db"): Promise<DataSource> {
-   return AppDataSource.setOptions({ host }).initialize();
- }
+export function createConnection(host = "db"): Promise<DataSource> {
+   return AppDataSource.setOptions({ host, database: process.env.NODE_ENV === "test" ? "rentals_api_test" : "rentals-api"}).initialize();
+}
 
 export default AppDataSource
