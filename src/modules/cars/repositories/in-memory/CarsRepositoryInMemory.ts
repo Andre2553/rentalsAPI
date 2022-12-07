@@ -4,7 +4,7 @@ import { ICarsRepository } from "../ICarsRepository";
 
 class CarsRepositoryInMemory implements ICarsRepository {
    cars: Car[] = [];
-   async create({ brand, category_id, daily_rate, license_plate, description, fine_amount, name }: ICreateCarsDTO): Promise<Car> {
+   async create({ brand, category_id, daily_rate, license_plate, description, fine_amount, name, id}: ICreateCarsDTO): Promise<Car> {
       const car = new Car();
       Object.assign(car, {
          name,
@@ -15,6 +15,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
          brand,
          category_id,
          created_at: new Date(),
+
       });
       this.cars.push(car);
       return car;
@@ -40,9 +41,13 @@ class CarsRepositoryInMemory implements ICarsRepository {
          })
       return all;
    }
-   // findById(id: string): Promise<Car> {
-   //    throw new Error("Method not implemented.");
-   // }
+   async findById(id: string): Promise<Car|null> {
+      const car = this.cars.find((car) => car.id === id);
+      if(car == undefined) {
+         return null;
+      }
+      return car;
+   }
    // updateAvailable(id: string, available: boolean): Promise<void> {
    //    throw new Error("Method not implemented.");
    // }
