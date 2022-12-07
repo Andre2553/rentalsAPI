@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../shared/errors/AppError";
 import { IDateProvider } from "../../../../shared/providers/DateProvider/IDateProvider";
@@ -13,9 +14,12 @@ interface IRequest {
    expected_return_date: Date;
 }
 
+@injectable()
 class CreateRentalUseCase {
    constructor(
+      @inject("RentalsRepository")
       private rentalsRepository: IRentalsRepository,
+      @inject("DayjsDateProvider")
       private dateProvider: IDateProvider,
    ) { }
    async execute({ car_id, user_id, expected_return_date }: IRequest): Promise<Rental> {
