@@ -22,6 +22,7 @@ export class CreateSpecificationCars1670362606055 implements MigrationInterface 
                     }
                 ],
             })
+            
         )
 
         await queryRunner.createForeignKey(
